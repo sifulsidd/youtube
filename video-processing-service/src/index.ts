@@ -21,6 +21,7 @@ app.post("/process-video", (req, res) => {
     }
 
     ffmpeg(inputFilePath)
+        // scale=-2:1080:flags=lanczos --> helps to scale it up a bit improves resolution a little
         .outputOptions("-vf", "scale=-1:360") // convert into 360p
         .on("end", () => {
             return res.status(200).send("Video processing finished successfully")
